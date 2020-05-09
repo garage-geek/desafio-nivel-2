@@ -1,6 +1,6 @@
 import pathlib
 
-from views import index, state_city
+from views import index, state_city, index_api, state_city_api
 
 PROJECT_ROOT = pathlib.Path(__file__).parent
 
@@ -8,6 +8,9 @@ PROJECT_ROOT = pathlib.Path(__file__).parent
 def setup_routes(app):
     app.router.add_get('/', index)
     app.router.add_get('/state_city/{state_id}', state_city, name='state_city')
+
+    app.router.add_get('/api', index_api, name='index_api')
+    app.router.add_get('/api/{state_id}', state_city_api, name='state_city_api')
     setup_static_routes(app)
 
 

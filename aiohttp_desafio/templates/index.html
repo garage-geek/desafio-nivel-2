@@ -3,9 +3,9 @@
 {% if states %}
     <ul>
     {% for state in states %}
-        <li>{{ state.state_name }}</li>
+        <li><a href="state_city/{{ state.id }}">{{ state.state_name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No questions are available.</p>
+    <p>No States are available.</p>
 {% endif %}
