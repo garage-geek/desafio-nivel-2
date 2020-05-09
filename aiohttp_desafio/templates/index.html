@@ -1,0 +1,11 @@
+{% set title = "Main" %}
+
+{% if states %}
+    <ul>
+    {% for state in states %}
+        <li>{{ state.state_name }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No questions are available.</p>
+{% endif %}
