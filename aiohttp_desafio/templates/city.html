@@ -15,8 +15,9 @@
 				<div class="form-group">
 				  <label for="exampleFormControlSelect1">Escolha um Estado</label>
 				  <select class="form-control" id="exampleFormControlSelect1">
-					<option>Minas Gerais</option>
-					<option>Rio Grande do Sul</option>
+					{% for state in states %}
+					<option>{{ state.state_name }}</option>
+                    {% endfor %}
 				  </select>
 				</div>
 				<div class="form-group">

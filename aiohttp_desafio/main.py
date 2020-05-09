@@ -2,10 +2,10 @@ from aiohttp import web
 import aiohttp_jinja2
 import jinja2
 
-from settings import config, BASE_DIR
-from routes import setup_routes
-from db import close_pg, init_pg
-from middlewares import setup_middlewares
+from aiohttp_desafio.settings import config, BASE_DIR
+from aiohttp_desafio.routes import setup_routes
+from aiohttp_desafio.db import close_pg, init_pg
+from aiohttp_desafio.middlewares import setup_middlewares
 
 app = web.Application()
 app['config'] = config

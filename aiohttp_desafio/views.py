@@ -1,7 +1,12 @@
 import json
 from aiohttp import web
 import aiohttp_jinja2
-import db
+from aiohttp_desafio import db
+
+
+def redirect(router, route_name):
+    location = router[route_name].url_for()
+    return web.HTTPFound(location)
 
 
 @aiohttp_jinja2.template('index.html')
@@ -30,12 +35,22 @@ async def state_city(request):
 
 @aiohttp_jinja2.template('state.html')
 async def state(request):
+    if request.method == 'POST':
+        form = await request.post()
+
+        async with request.app['db'].acquire() as conn:
+            await db.create_state(conn, form['state_name'])
+            raise redirect(request.app.router, 'index')
     return {}
 
 
 @aiohttp_jinja2.template('city.html')
 async def city(request):
-    return {}
+    async with request.app['db'].acquire() as conn:
+        cursor = await conn.execute(db.state.select())
+        records = await cursor.fetchall()
+        states = [dict(s) for s in records]
+    return {'states': states}
 
 
 async def index_api(request):

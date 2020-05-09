@@ -64,3 +64,8 @@ async def get_state(conn, state_id):
         .order_by(city.c.id))
     cities_records = await result.fetchall()
     return state_record, cities_records
+
+
+async def create_state(conn, state_name):
+    stmt = state.insert().values(state_name=state_name)
+    await conn.execute(stmt)
