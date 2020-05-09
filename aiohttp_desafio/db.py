@@ -53,19 +53,24 @@ async def close_pg(app):
 async def get_state(conn, state_id):
     result = await conn.execute(
         state.select()
-        .where(state.c.id == state_id))
+            .where(state.c.id == state_id))
     state_record = await result.first()
     if not state_record:
         msg = "State with id: {} does not exists"
         raise RecordNotFound(msg.format(state_id))
     result = await conn.execute(
         city.select()
-        .where(city.c.state_id == state_id)
-        .order_by(city.c.id))
+            .where(city.c.state_id == state_id)
+            .order_by(city.c.id))
     cities_records = await result.fetchall()
     return state_record, cities_records
 
 
 async def create_state(conn, state_name):
     stmt = state.insert().values(state_name=state_name)
+    await conn.execute(stmt)
+
+
+async def create_city(conn, city_name, state_id):
+    stmt = city.insert().values(city_name=city_name, state_id=int(state_id))
     await conn.execute(stmt)

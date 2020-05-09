@@ -3,43 +3,57 @@
 
 {% block content %}
 <div class="row">
-		<div class="col-md-2">
-		</div>
-		<div class="col-md-8">
-			<table class="table table-bordered mt-4">
-				<thead>
-					<tr>
-						<th>
-							#
-						</th>
-						<th>
-							Estado
-						</th>
-                        <th>
-							Cidades
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-                    {% for city in cities %}
-					<tr class="table-active">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8">
+        <table class="table table-bordered mt-4">
+            <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Estado
+                </th>
+                <th>
+                    Cidades
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if cities %}
+            {% for city in cities %}
+            <tr class="table-active">
 
-						    <td>
-							    {{ loop.index }}
-						    </td>
-						    <td>
-							    {{ state.state_name }}
-						    </td>
-                            <td>
-							    {{ city.city_name }}
-						    </td>
+                <td>
+                    {{ loop.index }}
+                </td>
+                <td>
+                    {{ state.state_name }}
+                </td>
+                <td>
+                    {{ city.city_name }}
+                </td>
 
-					</tr>
-                    {% endfor %}
-				</tbody>
-			</table>
-		</div>
-		<div class="col-md-2">
-		</div>
-	</div>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr class="table-active">
+                <td>
+                    -
+                </td>
+                <td>
+                    -
+                </td>
+                <td>
+                    -
+                </td>
+            </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-2">
+    </div>
+</div>
 {% endblock content %}

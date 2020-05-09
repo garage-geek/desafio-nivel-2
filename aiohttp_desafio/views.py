@@ -46,6 +46,13 @@ async def state(request):
 
 @aiohttp_jinja2.template('city.html')
 async def city(request):
+    if request.method == 'POST':
+        form = await request.post()
+
+        async with request.app['db'].acquire() as conn:
+            await db.create_city(conn, form['city_name'], form['state_id'])
+            raise redirect(request.app.router, 'index')
+
     async with request.app['db'].acquire() as conn:
         cursor = await conn.execute(db.state.select())
         records = await cursor.fetchall()
