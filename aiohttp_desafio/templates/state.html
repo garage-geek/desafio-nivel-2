@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% set title = "Cadastro de Estados" %}
+
+{% block content %}
+<div class="row">
+		<div class="col-md-2">
+		</div>
+		<div class="col-md-8">
+			<form class="mt-4">
+				<div class="form-group">
+				  <label for="exampleFormControlInput1">Cadastro de Estado</label>
+				  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nome do Estado">
+				</div>
+
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">
+						Cadastrar
+					</button>
+				</div>
+			</form>
+		</div>
+		<div class="col-md-2">
+		</div>
+	</div>
+
+{% endblock content %}

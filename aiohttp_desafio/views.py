@@ -10,7 +10,7 @@ async def index(request):
         cursor = await conn.execute(db.state.select())
         records = await cursor.fetchall()
         states = [dict(s) for s in records]
-        return {"states": states}
+        return {'states': states}
 
 
 @aiohttp_jinja2.template('detail.html')
@@ -26,6 +26,16 @@ async def state_city(request):
             'state': state,
             'cities': cities
         }
+
+
+@aiohttp_jinja2.template('state.html')
+async def state(request):
+    return {}
+
+
+@aiohttp_jinja2.template('city.html')
+async def city(request):
+    return {}
 
 
 async def index_api(request):
