@@ -81,3 +81,25 @@ async def state_city_api(request):
             raise web.HTTPNotFound(text=str(e))
         response_obj = {'status': 'success', 'state': state, 'cities': cities}
         return web.Response(text=json.dumps(response_obj), status=200)
+
+
+async def state_api(request):
+    if request.method == 'POST':
+        data = await request.json()
+
+        async with request.app['db'].acquire() as conn:
+            await db.create_state(conn, data['state_name'])
+            response_obj = {'status': 'success'}
+            return web.Response(text=json.dumps(response_obj), status=200)
+    return web.Response(text=json.dumps({'status': 'error'}), status=405)
+
+
+async def city_api(request):
+    if request.method == 'POST':
+        data = await request.json()
+
+        async with request.app['db'].acquire() as conn:
+            await db.create_city(conn, data['city_name'], data['state_id'])
+            response_obj = {'status': 'success'}
+            return web.Response(text=json.dumps(response_obj), status=200)
+    return web.Response(text=json.dumps({'status': 'error'}), status=405)
