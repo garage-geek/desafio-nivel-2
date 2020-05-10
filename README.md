@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/RamiroAlvaro/desafio-nivel-2.svg?branch=master)](https://travis-ci.org/RamiroAlvaro/desafio-nivel-2)
+
 # Desafio nível 2
 A idéia deste desafio é nos permitir avaliar melhor as habilidades de candidatos à vagas de desenvolvedor, de vários níveis.
 
