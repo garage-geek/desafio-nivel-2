@@ -45,8 +45,18 @@ Seu projeto será avaliado de acordo com os seguintes critérios.
 
 Adicionalmente, tentaremos verificar a sua familiarização com as bibliotecas padrões (standard libs), bem como sua experiência com programação orientada a objetos a partir da estrutura de seu projeto.
 
+## Como desenvolver?
 
-```
+1. Clone o repositório.
+2. Crie um virtualenv com Python 3.8
+3. Ative o virtualenv.
+4. Instale as dependências.
+5. Execute o servidor de banco de dados Postgres.
+6. Crie o banco de dados e preencha-o com dados de amostra.
+7. Execute os testes.
+8. Execute o aplicativo.
+
+```console
 git clone git@github.com:RamiroAlvaro/desafio-nivel-2.git desafio-nivel-2
 cd desafio-nivel-2
 python3 -m venv .env
