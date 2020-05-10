@@ -42,3 +42,16 @@ Seu projeto será avaliado de acordo com os seguintes critérios.
 1. Qualidade e cobertura dos testes unitários.
 
 Adicionalmente, tentaremos verificar a sua familiarização com as bibliotecas padrões (standard libs), bem como sua experiência com programação orientada a objetos a partir da estrutura de seu projeto.
+
+
+```
+$ python3 -m venv env
+$ source env/bin/activate
+
+$ docker run --rm -it -p 5432:5432 postgres:10
+$ psql -U postgres -h localhost
+postgres=# CREATE DATABASE aiohttp_desafio;
+postgres=# CREATE USER aiohttp_desafio_user WITH PASSWORD 'aiohttp_desafio_pass';
+postgres=# GRANT ALL PRIVILEGES ON DATABASE aiohttp_desafio TO aiohttp_desafio_user;
+postgres=# \q
+```
