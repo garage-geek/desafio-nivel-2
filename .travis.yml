@@ -7,5 +7,6 @@ addons:
   postgresql: '9.6'
 install:
   - pip install -q -r requirements-dev.txt
+  - cd aiohttp_desafio
 script:
   - pytest tests
