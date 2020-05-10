@@ -47,13 +47,15 @@ Adicionalmente, tentaremos verificar a sua familiarização com as bibliotecas p
 
 
 ```
-$ python3 -m venv env
-$ source env/bin/activate
-
-$ docker run --rm -it -p 5432:5432 postgres:10
-$ psql -U postgres -h localhost
-postgres=# CREATE DATABASE aiohttp_desafio;
-postgres=# CREATE USER aiohttp_desafio_user WITH PASSWORD 'aiohttp_desafio_pass';
-postgres=# GRANT ALL PRIVILEGES ON DATABASE aiohttp_desafio TO aiohttp_desafio_user;
-postgres=# \q
+git clone git@github.com:RamiroAlvaro/desafio-nivel-2.git desafio-nivel-2
+cd desafio-nivel-2
+python3 -m venv .env
+source .env/bin/activate
+pip install -r requirements-dev.txt
+docker run --rm -it -p 5432:5432 postgres:10
+python init_db.py
+cd aiohttp_desafio
+pytest tests
+cd ..
+python3 -m aiohttp_desafio
 ```
