@@ -91,7 +91,7 @@ async def state_api(request):
             await db.create_state(conn, data['state_name'])
             response_obj = {'status': 'success'}
             return web.Response(text=json.dumps(response_obj), status=200)
-    return web.Response(text=json.dumps({'status': 'error'}), status=405)
+    return {}
 
 
 async def city_api(request):
@@ -102,4 +102,4 @@ async def city_api(request):
             await db.create_city(conn, data['city_name'], data['state_id'])
             response_obj = {'status': 'success'}
             return web.Response(text=json.dumps(response_obj), status=200)
-    return web.Response(text=json.dumps({'status': 'error'}), status=405)
+    return {}
