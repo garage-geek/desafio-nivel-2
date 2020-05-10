@@ -1,6 +1,6 @@
 postgres:
-  database: aiohttp_desafio
-  user: aiohttp_desafio_user
+  database: test_aiohttp_desafio
+  user: test_aiohttp_desafio_user
   password: aiohttp_desafio_pass
   host: localhost
   port: 5432
