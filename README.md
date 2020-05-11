@@ -69,3 +69,12 @@ pytest tests
 cd ..
 python3 -m aiohttp_desafio
 ```
+## URLs API
+
+![GET /api](images/api_1.png)
+
+![GET /api/1](images/api_2.png)
+
+![POST /api/state](images/api_3.png)
+
+![POST /api/city](images/api_4.png)

@@ -60,7 +60,7 @@ async def test_no_exist_url(cli, tables_and_data):
     assert '404 Página não encontrada. O endereço que você solicitou não existe.' in await response.text()
 
 
-async def test_add_state(cli, tables_and_data):
+async def test_api_add_state(cli, tables_and_data):
     response = await cli.post(
         f'/api/state',
         data=json.dumps({'state_name': 'Mato Grosso'})
@@ -71,7 +71,7 @@ async def test_add_state(cli, tables_and_data):
     assert 'Mato Grosso' in await response.text()
 
 
-async def test_add_city(cli, tables_and_data):
+async def test_api_add_city(cli, tables_and_data):
     response = await cli.post(
         f'/api/city',
         data=json.dumps({'city_name': 'Betim', 'state_id': '1'})
@@ -80,6 +80,38 @@ async def test_add_city(cli, tables_and_data):
     response = await cli.get('state_city/1')
     assert response.status == 200
     assert 'Betim' in await response.text()
+    assert 'Belo Horizonte' in await response.text()
+    assert 'Sabará' in await response.text()
+    assert 'Minas Gerais' in await response.text()
+
+
+async def test_api_get_state(cli, tables_and_data):
+    response = await cli.get('/api')
+    assert response.status == 200
+    assert 'Minas Gerais' in await response.text()
+    assert 'Rio Grande do Sul' in await response.text()
+
+
+async def test_api_add_state_normalize(cli, tables_and_data):
+    response = await cli.post(
+        f'/api/state',
+        data=json.dumps({'state_name': '     dIsTriTO     feDERal     '})
+    )
+    assert response.status == 200
+    response = await cli.get('/')
+    assert response.status == 200
+    assert 'Distrito Federal' in await response.text()
+
+
+async def test_api_add_city_normalize(cli, tables_and_data):
+    response = await cli.post(
+        f'/api/city',
+        data=json.dumps({'city_name': '    oUro PREto', 'state_id': '1'})
+    )
+    assert response.status == 200
+    response = await cli.get('state_city/1')
+    assert response.status == 200
+    assert 'Ouro Preto' in await response.text()
     assert 'Belo Horizonte' in await response.text()
     assert 'Sabará' in await response.text()
     assert 'Minas Gerais' in await response.text()

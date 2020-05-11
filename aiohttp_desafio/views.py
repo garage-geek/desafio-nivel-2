@@ -9,6 +9,12 @@ def redirect(router, route_name):
     return web.HTTPFound(location)
 
 
+def normalize(text):
+    text = text.title()
+    text = text.split()
+    return ' '.join(text)
+
+
 @aiohttp_jinja2.template('index.html')
 async def index(request):
     async with request.app['db'].acquire() as conn:
@@ -39,7 +45,7 @@ async def state(request):
         form = await request.post()
 
         async with request.app['db'].acquire() as conn:
-            await db.create_state(conn, form['state_name'])
+            await db.create_state(conn, normalize(form['state_name']))
             raise redirect(request.app.router, 'index')
     return {}
 
@@ -50,7 +56,7 @@ async def city(request):
         form = await request.post()
 
         async with request.app['db'].acquire() as conn:
-            await db.create_city(conn, form['city_name'], form['state_id'])
+            await db.create_city(conn, normalize(form['city_name']), form['state_id'])
             raise redirect(request.app.router, 'index')
 
     async with request.app['db'].acquire() as conn:
@@ -88,7 +94,7 @@ async def state_api(request):
         data = await request.json()
 
         async with request.app['db'].acquire() as conn:
-            await db.create_state(conn, data['state_name'])
+            await db.create_state(conn, normalize(data['state_name']))
             response_obj = {'status': 'success'}
             return web.Response(text=json.dumps(response_obj), status=200)
     return {}
@@ -99,7 +105,7 @@ async def city_api(request):
         data = await request.json()
 
         async with request.app['db'].acquire() as conn:
-            await db.create_city(conn, data['city_name'], data['state_id'])
+            await db.create_city(conn, normalize(data['city_name']), data['state_id'])
             response_obj = {'status': 'success'}
             return web.Response(text=json.dumps(response_obj), status=200)
     return {}
