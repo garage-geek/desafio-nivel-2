@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/RamiroAlvaro/desafio-nivel-2.svg?branch=master)](https://travis-ci.org/RamiroAlvaro/desafio-nivel-2)
+
 # Desafio nível 2
 A idéia deste desafio é nos permitir avaliar melhor as habilidades de candidatos à vagas de desenvolvedor, de vários níveis.
 
@@ -42,3 +44,37 @@ Seu projeto será avaliado de acordo com os seguintes critérios.
 1. Qualidade e cobertura dos testes unitários.
 
 Adicionalmente, tentaremos verificar a sua familiarização com as bibliotecas padrões (standard libs), bem como sua experiência com programação orientada a objetos a partir da estrutura de seu projeto.
+
+## Como desenvolver?
+
+1. Clone o repositório.
+2. Crie um virtualenv com Python 3.8
+3. Ative o virtualenv.
+4. Instale as dependências.
+5. Execute o servidor de banco de dados Postgres.
+6. Crie o banco de dados e preencha-o com dados de amostra.
+7. Execute os testes.
+8. Execute o aplicativo.
+
+```console
+git clone git@github.com:RamiroAlvaro/desafio-nivel-2.git desafio-nivel-2
+cd desafio-nivel-2
+python3 -m venv .env
+source .env/bin/activate
+pip install -r requirements-dev.txt
+docker run --rm -it -p 5432:5432 postgres:10
+python init_db.py
+cd aiohttp_desafio
+pytest tests
+cd ..
+python3 -m aiohttp_desafio
+```
+## URLs API
+
+![GET /api](images/api_1.png)
+
+![GET /api/1](images/api_2.png)
+
+![POST /api/state](images/api_3.png)
+
+![POST /api/city](images/api_4.png)
